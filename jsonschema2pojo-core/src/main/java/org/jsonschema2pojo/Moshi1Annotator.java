@@ -38,6 +38,11 @@ public class Moshi1Annotator extends AbstractAnnotator {
     }
 
     @Override
+    public void addLombokAnnotations(JDefinedClass clazz, JsonNode schema) {
+
+    }
+
+    @Override
     public void propertyField(JFieldVar field, JDefinedClass clazz, String propertyName, JsonNode propertyNode) {
         JClass moshiAnnotation = clazz.owner().directClass("com.squareup.moshi.Json");
         field.annotate(moshiAnnotation).param("name", propertyName);

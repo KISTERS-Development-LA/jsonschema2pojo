@@ -109,7 +109,7 @@ public class DefaultGenerationConfig implements GenerationConfig {
     public boolean isIncludeToString() {
         return true;
     }
-    
+
     /**
      * @return no exclusions
      */
@@ -160,6 +160,14 @@ public class DefaultGenerationConfig implements GenerationConfig {
      */
     @Override
     public boolean isIncludeJsr303Annotations() {
+        return false;
+    }
+
+    /**
+     * @return <code>true</code>
+     */
+    @Override
+    public boolean isIncludeJsr303ValidAnnotation() {
         return false;
     }
 
@@ -304,6 +312,14 @@ public class DefaultGenerationConfig implements GenerationConfig {
     }
 
     /**
+     * @return <code>false</code>
+     */
+    @Override
+    public boolean isIncludeLombokAnnotations() {
+        return false;
+    }
+
+    /**
      * @return <code>true</code>
      */
     @Override
@@ -428,7 +444,7 @@ public class DefaultGenerationConfig implements GenerationConfig {
     public SourceSortOrder getSourceSortOrder() {
         return SourceSortOrder.OS;
     }
-    
+
     /**
      * @return {@link Language#JAVA}
      */
@@ -444,5 +460,5 @@ public class DefaultGenerationConfig implements GenerationConfig {
     public Map<String, String> getFormatTypeMapping() {
         return Collections.emptyMap();
     }
-    
+
 }

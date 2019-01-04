@@ -54,6 +54,15 @@ public interface Annotator {
      */
     void propertyInclusion(JDefinedClass clazz, JsonNode schema);
 
+
+    /**
+     * Add the Lombok specific annotation(s), if required
+     * @param clazz
+     *            a generated pojo class, that is serialized to JSON
+     * @param schema
+     *            the object schema associated with this clazz
+     */
+    void addLombokAnnotations(JDefinedClass clazz, JsonNode schema);
     /**
      * Add the necessary annotation to mark a Java field as a JSON property
      *

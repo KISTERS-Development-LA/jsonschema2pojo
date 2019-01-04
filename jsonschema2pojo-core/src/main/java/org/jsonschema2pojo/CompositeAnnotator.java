@@ -57,6 +57,19 @@ public class CompositeAnnotator implements Annotator {
         }
     }
 
+    /**
+     * Add the Lombok specific annotation(s), if required
+     *
+     * @param clazz  a generated pojo class, that is serialized to JSON
+     * @param schema
+     */
+    @Override
+    public void addLombokAnnotations(JDefinedClass clazz, JsonNode schema) {
+        for (Annotator annotator : annotators) {
+            annotator.addLombokAnnotations(clazz, schema);
+        }
+    }
+
     @Override
     public void propertyField(JFieldVar field, JDefinedClass clazz, String propertyName, JsonNode propertyNode) {
         for (Annotator annotator : annotators) {
@@ -130,19 +143,19 @@ public class CompositeAnnotator implements Annotator {
         }
     }
 
-   @Override
-   public void dateTimeField(JFieldVar field, JDefinedClass clazz, JsonNode propertyNode) {
-      for (Annotator annotator : annotators) {
+    @Override
+    public void dateTimeField(JFieldVar field, JDefinedClass clazz, JsonNode propertyNode) {
+        for (Annotator annotator : annotators) {
             annotator.dateTimeField(field, clazz, propertyNode);
         }
-   }
+    }
 
-   @Override
-   public void dateField(JFieldVar field, JDefinedClass clazz, JsonNode propertyNode) {
-      for (Annotator annotator : annotators) {
+    @Override
+    public void dateField(JFieldVar field, JDefinedClass clazz, JsonNode propertyNode) {
+        for (Annotator annotator : annotators) {
             annotator.dateField(field, clazz, propertyNode);
         }
-   }
+    }
 
     @Override
     public void timeField(JFieldVar field, JDefinedClass clazz, JsonNode propertyNode) {

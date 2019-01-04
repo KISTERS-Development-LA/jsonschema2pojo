@@ -74,6 +74,12 @@ public class PropertiesRule implements Rule<JDefinedClass, JDefinedClass> {
             addOverrideBuilders(jclass, jclass.owner()._getClass(jclass._extends().fullName()));
         }
 
+        //TODO test this!
+        if(ruleFactory.getGenerationConfig().isIncludeLombokAnnotations())
+        {
+            ruleFactory.getAnnotator().addLombokAnnotations(jclass, node);
+        }
+
         ruleFactory.getAnnotator().propertyOrder(jclass, node);
 
         return jclass;

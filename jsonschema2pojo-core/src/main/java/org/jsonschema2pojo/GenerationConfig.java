@@ -138,7 +138,7 @@ public interface GenerationConfig {
      *         generated Java types.
      */
     boolean isIncludeToString();
-    
+
     /**
      * Gets the 'toStringExcludes' configuration option.
      *
@@ -146,7 +146,7 @@ public interface GenerationConfig {
      *         that should be excluded from toString methods
      */
     String[] getToStringExcludes();
- 
+
     /**
      * Gets the 'annotationStyle' configuration option.
      *
@@ -221,6 +221,15 @@ public interface GenerationConfig {
      *         generated Java types.
      */
     boolean isIncludeJsr303Annotations();
+
+    /**
+     * Gets the 'includeJsr303ValidAnnotation configuration option.
+     *
+     * @return Whether to include
+     *          {@literal @Valid}
+     *          in generated Java types.
+     */
+    boolean isIncludeJsr303ValidAnnotation();
 
     /**
      * Gets the 'includeJsr305Annotations' configuration option.
@@ -375,6 +384,12 @@ public interface GenerationConfig {
      *         regardless of the input schema(s).
      */
     boolean isIncludeAdditionalProperties();
+
+    /**
+     * Gets the 'includeLombokAnnotations' configuration option.
+     * @return Wether to include Lombok-Annotations
+     */
+    boolean isIncludeLombokAnnotations();
 
     /**
      * Gets the 'includeGetters' configuration option.
@@ -553,7 +568,7 @@ public interface GenerationConfig {
 
     /**
      * Gets the 'targetLanguage' configuration option.
-     * 
+     *
      * @return The type of code that will be generated.
      *         <p>
      *         Supported values:

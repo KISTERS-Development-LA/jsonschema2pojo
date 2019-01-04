@@ -88,6 +88,11 @@ public class Jackson1Annotator extends AbstractAnnotator {
     }
 
     @Override
+    public void addLombokAnnotations(JDefinedClass clazz, JsonNode schema) {
+
+    }
+
+    @Override
     public void propertyField(JFieldVar field, JDefinedClass clazz, String propertyName, JsonNode propertyNode) {
         field.annotate(JsonProperty.class).param("value", propertyName);
         if (field.type().erasure().equals(field.type().owner().ref(Set.class))) {

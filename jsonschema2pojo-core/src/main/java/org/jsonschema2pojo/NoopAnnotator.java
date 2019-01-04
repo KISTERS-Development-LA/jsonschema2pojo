@@ -17,10 +17,17 @@
 package org.jsonschema2pojo;
 
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.sun.codemodel.JDefinedClass;
+
 /**
  * No-op annotator that produces no annotations. Useful for producing truly
  * <em>plain old</em> Java types that have no mapping annotations at all.
  */
 public class NoopAnnotator extends AbstractAnnotator {
 
+    @Override
+    public void addLombokAnnotations(JDefinedClass clazz, JsonNode schema) {
+
+    }
 }

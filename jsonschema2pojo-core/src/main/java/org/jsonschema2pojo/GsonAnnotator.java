@@ -43,6 +43,17 @@ public class GsonAnnotator extends AbstractAnnotator {
         super(generationConfig);
     }
 
+    /**
+     * Add the Lombok specific annotation(s), if required
+     *
+     * @param clazz  a generated pojo class, that is serialized to JSON
+     * @param schema
+     */
+    @Override
+    public void addLombokAnnotations(JDefinedClass clazz, JsonNode schema) {
+        //TODO add implementation
+    }
+
     @Override
     public void propertyField(JFieldVar field, JDefinedClass clazz, String propertyName, JsonNode propertyNode) {
         field.annotate(SerializedName.class).param("value", propertyName);

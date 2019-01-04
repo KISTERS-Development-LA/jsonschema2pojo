@@ -68,7 +68,15 @@ public class PropertyRule implements Rule<JDefinedClass, JDefinedClass> {
 
         node = resolveRefs(node, schema);
 
-        int accessModifier = isIncludeGetters || isIncludeSetters ? JMod.PRIVATE : JMod.PUBLIC;
+        int accessModifier = JMod.PRIVATE;
+        //TODO change accessModifiers if lombokAnnotations are enabled
+        //int accessModifier = isIncludeGetters || isIncludeSetters ? JMod.PRIVATE : JMod.PUBLIC;
+        if((!isIncludeGetters || !isIncludeSetters) && ruleFactory.getGenerationConfig().isIncludeLombokAnnotations()) {
+            accessModifier = JMod.PRIVATE;
+        } else {
+            accessModifier = JMod.PUBLIC;
+        }
+
         JFieldVar field = jclass.field(accessModifier, propertyType, propertyName);
 
         propertyAnnotations(nodeName, node, schema, field);
