@@ -249,6 +249,11 @@ public class MediaIT {
         public static final String QUOTED_PRINTABLE = "quoted-printable";
         public static final String USING = "using";
         public static final String INCLUDE = "include";
+
+        @Override
+        public void addLombokAnnotations(JDefinedClass clazz, JsonNode schema) {
+        }
+
         @Override
         public void propertyField(JFieldVar field, JDefinedClass clazz, String propertyName, JsonNode propertyNode) {
             if( isQuotedPrintableProperty(propertyNode) ) {
@@ -274,7 +279,7 @@ public class MediaIT {
     }
 
     public static class QuotedPrintableSerializer
-    extends StdSerializer<byte[]>
+            extends StdSerializer<byte[]>
     {
         private static QuotedPrintableCodec codec = new QuotedPrintableCodec();
 
@@ -291,7 +296,7 @@ public class MediaIT {
 
     @SuppressWarnings("serial")
     public static class QuotedPrintableDeserializer
-    extends StdDeserializer<byte[]>
+            extends StdDeserializer<byte[]>
     {
         private static QuotedPrintableCodec codec = new QuotedPrintableCodec();
 

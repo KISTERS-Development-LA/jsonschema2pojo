@@ -157,6 +157,23 @@ public class JsonSchemaExtension implements GenerationConfig {
     urlList.iterator()
   }
 
+  /**
+   * Gets the 'includeJsr303ValidAnnotation configuration option.
+   *
+   * @return Whether to include
+   * {@literal @Valid}
+   *          in generated Java types.
+   */
+  @Override
+  boolean isIncludeJsr303ValidAnnotation() {
+    return false
+  }
+
+  @Override
+  boolean isIncludeLombokAnnotations() {
+    return false
+  }
+
   public void setSource(Iterable<File> files) {
     def copy = [] as List
     files.each { copy.add(it) }
@@ -256,7 +273,7 @@ public class JsonSchemaExtension implements GenerationConfig {
        |formatTypeMapping = ${formatTypeMapping}
      """.stripMargin()
   }
-  
+
   public boolean isFormatDateTimes() {
     return formatDateTimes;
   }

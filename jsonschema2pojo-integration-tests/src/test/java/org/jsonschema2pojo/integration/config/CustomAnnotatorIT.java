@@ -121,6 +121,10 @@ public class CustomAnnotatorIT {
         }
 
         @Override
+        public void addLombokAnnotations(JDefinedClass clazz, JsonNode schema) {
+        }
+
+        @Override
         public void propertyField(JFieldVar field, JDefinedClass clazz, String propertyName, JsonNode propertyNode) {
             field.annotate(Deprecated.class);
         }
@@ -167,7 +171,7 @@ public class CustomAnnotatorIT {
 
         @Override
         public void additionalPropertiesField(JFieldVar field,
-                JDefinedClass clazz, String propertyName) {
+                                              JDefinedClass clazz, String propertyName) {
             field.annotate(Deprecated.class);
 
         }

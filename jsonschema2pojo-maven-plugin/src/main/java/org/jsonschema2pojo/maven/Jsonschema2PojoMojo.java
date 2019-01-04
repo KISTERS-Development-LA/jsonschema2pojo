@@ -331,6 +331,11 @@ public class Jsonschema2PojoMojo extends AbstractMojo implements GenerationConfi
     private boolean includeJsr303Annotations = false;
 
     /**
+     * Extension to the JSr303Annotation-Standard to disable the {@literal @Valid} for objects and arrays.
+     */
+    private boolean includeJsr303ValidAnnotation = false;
+
+    /**
      * Whether to include
      * <a href="http://jcp.org/en/jsr/detail?id=305">JSR-305</a> annotations
      * (for schema rules like Nullable, NonNull, etc) in generated Java types.
@@ -349,7 +354,7 @@ public class Jsonschema2PojoMojo extends AbstractMojo implements GenerationConfi
      * @parameter property="jsonschema2pojo.useOptionalForGetters"
      *            default-value="false"
      */
-     private boolean useOptionalForGetters = false;
+    private boolean useOptionalForGetters = false;
 
     /**
      * The type of input documents that will be read
@@ -567,6 +572,17 @@ public class Jsonschema2PojoMojo extends AbstractMojo implements GenerationConfi
      * @since 0.4.14
      */
     private boolean includeAdditionalProperties = true;
+
+    /**
+     * Whether to allow 'lombok annotations' support in objects. Setting this
+     * to true will add additional annotations to classes, this inherits the deactivation
+     * of the generation of getters, setters, noArgConstructor and allArgsConstructor.
+     *
+     * @parameter property="includeLombokAnnotations"
+     *            default-value="false"
+     * @since 1.0.1
+     */
+    private boolean includeLombokAnnotations = false;
 
     /**
      * Whether to include getters or to omit this accessor method and
@@ -950,6 +966,9 @@ public class Jsonschema2PojoMojo extends AbstractMojo implements GenerationConfi
     }
 
     @Override
+    public boolean isIncludeJsr303ValidAnnotation() { return includeJsr303ValidAnnotation; }
+
+    @Override
     public boolean isIncludeJsr305Annotations() {
         return includeJsr305Annotations;
     }
@@ -1053,6 +1072,9 @@ public class Jsonschema2PojoMojo extends AbstractMojo implements GenerationConfi
     public boolean isIncludeAdditionalProperties() {
         return includeAdditionalProperties;
     }
+
+    @Override
+    public boolean isIncludeLombokAnnotations() { return includeLombokAnnotations; }
 
     @Override
     public boolean isIncludeGetters() { return includeGetters; }

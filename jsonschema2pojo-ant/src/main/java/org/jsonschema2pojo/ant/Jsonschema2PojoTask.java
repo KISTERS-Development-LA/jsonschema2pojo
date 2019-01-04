@@ -111,6 +111,8 @@ public class Jsonschema2PojoTask extends Task implements GenerationConfig {
 
     private boolean includeJsr305Annotations = false;
 
+    private boolean includeJsr303ValidAnnotation = false;
+
     private boolean useOptionalForGetters;
 
     private SourceType sourceType = SourceType.JSONSCHEMA;
@@ -142,6 +144,8 @@ public class Jsonschema2PojoTask extends Task implements GenerationConfig {
     private boolean constructorsRequiredPropertiesOnly = false;
 
     private boolean includeAdditionalProperties = true;
+
+    private boolean includeLombokAnnotations = false;
 
     private boolean includeGetters = true;
 
@@ -872,7 +876,7 @@ public class Jsonschema2PojoTask extends Task implements GenerationConfig {
     public void setSourceSortOrder(SourceSortOrder sourceSortOrder) {
         this.sourceSortOrder = sourceSortOrder;
     }
-    
+
     public void setTargetLanguage(Language targetLanguage) {
         this.targetLanguage = targetLanguage;
     }
@@ -882,7 +886,7 @@ public class Jsonschema2PojoTask extends Task implements GenerationConfig {
     }
     public void setFormatTypeMapping(String[] formatTypeMapping) {
         this.formatTypeMapping = Arrays.stream(formatTypeMapping)
-            .collect(Collectors.toMap(m -> m.split(":")[0], m -> m.split(":")[1]));
+                .collect(Collectors.toMap(m -> m.split(":")[0], m -> m.split(":")[1]));
     }
 
     @Override
@@ -978,6 +982,9 @@ public class Jsonschema2PojoTask extends Task implements GenerationConfig {
     public boolean isIncludeJsr303Annotations() {
         return includeJsr303Annotations;
     }
+
+    @Override
+    public boolean isIncludeJsr303ValidAnnotation() { return includeJsr303ValidAnnotation; }
 
     @Override
     public boolean isIncludeJsr305Annotations() {
@@ -1093,6 +1100,9 @@ public class Jsonschema2PojoTask extends Task implements GenerationConfig {
     }
 
     @Override
+    public boolean isIncludeLombokAnnotations() { return includeLombokAnnotations; }
+
+    @Override
     public boolean isIncludeGetters() {
         return includeGetters;
     }
@@ -1191,7 +1201,7 @@ public class Jsonschema2PojoTask extends Task implements GenerationConfig {
     public SourceSortOrder getSourceSortOrder() {
         return sourceSortOrder;
     }
-    
+
     @Override
     public Language getTargetLanguage() {
         return targetLanguage;
@@ -1201,5 +1211,5 @@ public class Jsonschema2PojoTask extends Task implements GenerationConfig {
     public Map<String, String> getFormatTypeMapping() {
         return formatTypeMapping;
     }
-    
+
 }

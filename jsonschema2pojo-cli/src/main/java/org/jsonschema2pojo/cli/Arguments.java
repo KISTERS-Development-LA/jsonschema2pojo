@@ -92,7 +92,7 @@ public class Arguments implements GenerationConfig {
 
     @Parameter(names = { "-S", "--omit-tostring" }, description = "Omit the toString method in the generated Java types")
     private boolean omitToString = false;
-    
+
     @Parameter(names = { "-tse", "--tostring-excludes" }, description = "The fields that should be excluded from generated toString methods")
     private String toStringExcludes = "";
 
@@ -177,6 +177,9 @@ public class Arguments implements GenerationConfig {
     @Parameter(names = { "-ds", "--disable-setters" }, description = "Whether to omit setter methods and create public fields instead.")
     private boolean disableSetters = false;
 
+    @Parameter(names = { "-eL", "--enable-lombok" }, description = "Whether to enable Lombok annotations.")
+    private boolean enableLombokAnnotations = false;
+
     @Parameter(names = { "-tv", "--target-version" }, description = "The target version for generated source files.")
     private String targetVersion = "1.6";
 
@@ -221,7 +224,7 @@ public class Arguments implements GenerationConfig {
 
     @Parameter(names = { "-ftm", "--format-type-mapping" }, description = "Mapping from format identifier to type: <format>:<fully.qualified.Type>.", variableArity = true)
     private List<String> formatTypeMapping = new ArrayList<>();
-    
+
     private static final int EXIT_OKAY = 0;
     private static final int EXIT_ERROR = 1;
 
@@ -312,7 +315,7 @@ public class Arguments implements GenerationConfig {
     public String[] getToStringExcludes() {
         return defaultString(toStringExcludes).split(" ");
     }
-    
+
     @Override
     public AnnotationStyle getAnnotationStyle() {
         return annotationStyle;
@@ -341,6 +344,11 @@ public class Arguments implements GenerationConfig {
     @Override
     public boolean isIncludeJsr303Annotations() {
         return includeJsr303Annotations;
+    }
+
+    @Override
+    public boolean isIncludeJsr303ValidAnnotation() {
+        return false;
     }
 
     @Override
@@ -438,6 +446,9 @@ public class Arguments implements GenerationConfig {
     public boolean isIncludeAdditionalProperties() {
         return isIncludeAdditionalProperties;
     }
+
+    @Override
+    public boolean isIncludeLombokAnnotations() { return !enableLombokAnnotations; }
 
     @Override
     public boolean isIncludeGetters() {
