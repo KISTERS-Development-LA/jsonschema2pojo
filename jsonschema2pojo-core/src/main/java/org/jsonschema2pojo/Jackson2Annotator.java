@@ -20,6 +20,7 @@ import static org.apache.commons.lang3.StringUtils.*;
 
 import java.util.Iterator;
 import java.util.LinkedHashSet;
+import java.util.Map;
 import java.util.Set;
 
 import org.jsonschema2pojo.rules.FormatRule;
@@ -99,8 +100,18 @@ public class Jackson2Annotator extends AbstractAnnotator {
     public void addLombokAnnotations(JDefinedClass clazz, JsonNode schema) {
         clazz.annotate(lombok.Getter.class);
         clazz.annotate(lombok.Setter.class);
-        clazz.annotate(lombok.AllArgsConstructor.class);
+        if(classHasFields(clazz)){
+            clazz.annotate(lombok.AllArgsConstructor.class);
+        }
         clazz.annotate(lombok.NoArgsConstructor.class);
+    }
+
+    private boolean classHasFields(JDefinedClass clazz){
+        Map<String, JFieldVar> fields = clazz.fields();
+        if(fields != null && !fields.isEmpty()){
+            return true;
+        }
+        return false;
     }
 
     @Override
